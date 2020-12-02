@@ -8,15 +8,15 @@ const fetchInformation = function (requestURL,fileToWrite){
     if(error){
       console.log('Error: ',error);
     } else {
-    fs.writeFile(fileToWrite,body,'utf-8',(error) => {
-      if(error){
+      fs.writeFile(fileToWrite,body,'utf-8',(error,bytes) => {
+        if(error){
         console.log('Error');
-      } else {
-      const fileSize = fs.statSync(fileToWrite);
-      console.log(`Downloaded and saved ${fileSize.size} bytes to ${fileToWrite}`);
-      }
-    })
-  }
+        } else {
+        const fileSize = fs.statSync(fileToWrite);
+        console.log(`Downloaded and saved ${fileSize.size} bytes to ${fileToWrite}`);
+        }
+      })
+    }
   })
 };
 
