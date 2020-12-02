@@ -7,16 +7,17 @@ const fetchInformation = function (requestURL,fileToWrite){
   request(requestURL,(error,response,body) => {
     if(error){
       console.log('Error: ',error);
-    }
+    } else {
     fs.writeFile(fileToWrite,body,'utf-8',(error) => {
       if(error){
         console.log('Error');
-      }
+      } else {
       const fileSize = fs.statSync(fileToWrite);
       console.log(`Downloaded and saved ${fileSize.size} bytes to ${fileToWrite}`);
+      }
     })
+  }
   })
-
 };
 
 fetchInformation(args[2],args[3]);
